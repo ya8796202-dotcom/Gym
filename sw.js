@@ -1,5 +1,11 @@
 const CACHE_NAME = "gymaweya-v1";
-const ASSETS = ["./", "./index.html", "./style.css", "./script.js", "./manifest.json"];
+const ASSETS = [
+  "/Gym/",
+  "/Gym/index.html",
+  "/Gym/style.css",
+  "/Gym/script.js",
+  "/Gym/manifest.json"
+];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS)));
@@ -15,6 +21,6 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((cached) => cached || fetch(event.request).catch(() => caches.match("./index.html")))
+    caches.match(event.request).then((cached) => cached || fetch(event.request).catch(() => caches.match("/Gym/index.html")))
   );
 });
