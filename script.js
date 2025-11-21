@@ -1,4 +1,4 @@
-// ✅ تسجيل الـ Service Worker
+// تسجيل الـ Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/Gym/sw.js')
@@ -7,7 +7,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// ✅ التعامل مع زر التثبيت
+// التعامل مع زر التثبيت
 let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 const installMsg = document.getElementById("installMsg");
