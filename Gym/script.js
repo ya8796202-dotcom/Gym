@@ -35,3 +35,26 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('❌ Service Worker Error', err));
   });
 }
+
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = "block"; // أظهر الزر
+});
+
+installBtn.addEventListener("click", () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("✅ User accepted the install prompt");
+      } else {
+        console.log("❌ User dismissed the install prompt");
+      }
+      deferredPrompt = null;
+    });
+  }
+});
