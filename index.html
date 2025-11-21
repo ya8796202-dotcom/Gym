@@ -1,17 +1,50 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gymaweya</title>
+  <title>Gymaweya | خطط وتمارين</title>
   <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
+  <script src="content.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>💪 Gymaweya</h1>
+  <header>
+    <h1>💪 Gymaweya</h1>
+    <button id="installBtn" style="display:none;">📲 تثبيت التطبيق</button>
+    <p id="installMsg" style="display:none; color:red;"></p>
+  </header>
 
-  <!-- زر التثبيت -->
-  <button id="installBtn" style="display:none;">📲 تثبيت التطبيق</button>
-  <p id="installMsg" style="display:none; color:red;"></p>
+  <main>
+    <section class="hero fade-in">
+      <h2>ابدأ رحلتك الرياضية</h2>
+      <p>اختر هدفك وابدأ التمرين المناسب ليك</p>
+    </section>
+
+    <section class="plans fade-in">
+      <div class="plan-card" onclick="showContent('fitness')">
+        🏃‍♂️ تمارين فتنس
+      </div>
+      <div class="plan-card" onclick="showContent('weights')">
+        🏋️‍♂️ تمارين حديد
+      </div>
+      <div class="plan-card" onclick="showContent('bulking')">
+        🍗 خطة تضخيم
+      </div>
+      <div class="plan-card" onclick="showContent('cutting')">
+        🥗 خطة تنشيف
+      </div>
+    </section>
+
+    <section id="content" class="fade-in">
+      <h3>اختر خطة لعرض التفاصيل</h3>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Gymaweya. كل الحقوق محفوظة.</p>
+  </footer>
 </body>
 </html>
