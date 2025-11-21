@@ -58,3 +58,34 @@ installBtn.addEventListener("click", () => {
     });
   }
 });
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+const installMsg = document.getElementById("installMsg");
+
+installBtn.style.display = "block"; // الزر دايمًا ظاهر
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log("✅ beforeinstallprompt event captured");
+});
+
+installBtn.addEventListener("click", () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("✅ User accepted the install prompt");
+        installMsg.style.display = "none";
+      } else {
+        console.log("❌ User dismissed the install prompt");
+        installMsg.textContent = "تم إلغاء التثبيت.";
+        installMsg.style.display = "block";
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    installMsg.textContent = "⚠️ التثبيت غير متاح حاليًا. افتح الموقع من متصفح يدعم التثبيت مثل Chrome أو Edge.";
+    installMsg.style.display = "block";
+  }
+});
