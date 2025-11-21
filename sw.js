@@ -1,4 +1,3 @@
-// Service Worker بسيط لتفعيل PWA
 self.addEventListener('install', (event) => {
   console.log('✅ Service Worker Installed');
 });
