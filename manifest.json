@@ -1,9 +1,0 @@
-{
-  "name": "Gymaweya",
-  "short_name": "Gymaweya",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#222222",
-  "theme_color": "#222222",
-  "icons": []
-}
