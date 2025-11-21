@@ -3,29 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تمارين فتنس | Gymaweya</title>
+  <title>خطة فتنس شاملة | Gymaweya</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 10px;
+      color: #0f0;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 0, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0, 255, 0, 0.1);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .section h2 {
+      color: #0f0;
+    }
+
+    ul {
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>🏃‍♂️ تمارين فتنس</h1>
-    <a href="index.html" class="back">🔙 رجوع</a>
+    <h1>🏃‍♂️ خطة فتنس شاملة</h1>
+    <a href="index.html" class="back">🔙 رجوع للرئيسية</a>
   </header>
 
   <main>
-    <section class="content">
-      <h2>برنامج فتنس شامل</h2>
+    <section class="section">
+      <h2>🎯 الهدف من الخطة</h2>
+      <p>تحسين اللياقة البدنية، حرق الدهون، زيادة التحمل، وبناء أساس عضلي قوي للمبتدئين والمتوسطين.</p>
+    </section>
+
+    <section class="section">
+      <h2>📅 جدول التمارين الأسبوعي</h2>
       <ul>
-        <li>كارديو يومي 20-30 دقيقة</li>
-        <li>HIIT مرتين أسبوعيًا</li>
-        <li>تمارين مرونة وتمدد</li>
+        <li><strong>اليوم 1:</strong> كارديو + تمارين صدر وذراع</li>
+        <li><strong>اليوم 2:</strong> تمارين ظهر + HIIT</li>
+        <li><strong>اليوم 3:</strong> راحة أو تمارين مرونة</li>
+        <li><strong>اليوم 4:</strong> تمارين أرجل + بطن</li>
+        <li><strong>اليوم 5:</strong> كارديو + أكتاف وذراع</li>
+        <li><strong>اليوم 6:</strong> تمارين شاملة للجسم (Full Body)</li>
+        <li><strong>اليوم 7:</strong> راحة</li>
       </ul>
-      <h3>نصائح:</h3>
+    </section>
+
+    <section class="section">
+      <h2>🍽️ نصائح غذائية</h2>
       <ul>
-        <li>ابدأ تدريجيًا وزود الشدة مع الوقت</li>
-        <li>اشرب مياه كفاية قبل وبعد التمرين</li>
-        <li>نام كويس علشان جسمك يتعافى</li>
+        <li>تناول وجبات متوازنة تحتوي على بروتين، كربوهيدرات، ودهون صحية</li>
+        <li>اشرب 2-3 لتر ماء يوميًا</li>
+        <li>قلل السكريات والمقليات</li>
+        <li>تناول وجبة خفيفة قبل التمرين (موز + زبادي مثلًا)</li>
       </ul>
+    </section>
+
+    <section class="section">
+      <h2>💡 نصائح للنجاح</h2>
+      <ul>
+        <li>ابدأ تدريجيًا وزود الشدة أسبوعيًا</li>
+        <li>سجل تقدمك بالصور أو الوزن</li>
+        <li>نم 7-8 ساعات يوميًا</li>
+        <li>لا تقارن نفسك بغيرك، ركّز على تطورك</li>
+      </ul>
+      <p class="quote">"الاستمرارية أهم من الكمال، خطوة كل يوم توصلك لهدفك!"</p>
     </section>
   </main>
 
