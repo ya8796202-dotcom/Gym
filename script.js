@@ -1,11 +1,9 @@
-// تسجيل Service Worker
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js")
+  navigator.serviceWorker.register("/Gym/sw.js")
     .then(() => console.log("✅ Service Worker مسجل"))
     .catch((err) => console.error("❌ فشل التسجيل:", err));
 }
 
-// زر التثبيت
 let deferredPrompt = null;
 const installBtn = document.getElementById("installBtn");
 
