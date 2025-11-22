@@ -1,13 +1,12 @@
-/* ألوان عامة */
 :root{
-  --bg:#f9fff9;          /* خلفية فاتحة */
-  --bg-alt:#eefaf2;
+  --bg:#fffbea;          /* خلفية فاتحة مائلة للأصفر */
+  --bg-alt:#fff3c4;
   --card:#d6ecff;        /* لبني للكروت */
-  --primary:#ffd60a;     /* أصفر للأزرار */
-  --primary-dark:#ffb703;
+  --primary:#ffd60a;     /* أصفر */
+  --primary-2:#ffb703;
   --text:#222;
   --muted:#555;
-  --shadow:rgba(0,0,0,0.15);
+  --shadow:rgba(0,0,0,.15);
 }
 
 /* Reset */
@@ -22,7 +21,7 @@ body{
 
 /* عناوين */
 .gradient-text{
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
