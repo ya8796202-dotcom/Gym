@@ -2,30 +2,193 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gymaweya | اختر خطتك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GYMAWEYA | جيم أويّة</title>
+
+  <!-- PWA & Assets -->
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>💪 Gymaweya</h1>
-    <button id="installBtn" style="display:none;">📲 تثبيت التطبيق</button>
-    <p id="installMsg" style="display:none; color:red;"></p>
-  </header>
 
-  <main>
-    <section class="plans">
-      <a href="fitness.html" class="plan-card">🏃‍♂️ تمارين فتنس</a>
-      <a href="weights.html" class="plan-card">🏋️‍♂️ تمارين حديد</a>
-      <a href="bulking.html" class="plan-card">🍗 خطة تضخيم</a>
-      <a href="cutting.html" class="plan-card">🥗 خطة تنشيف</a>
-    </section>
-  </main>
+  <!-- Header / Hero -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <h1 class="gradient-text">GYMAWEYA | جيم أويّة</h1>
+      <p>ابني جسمك، قوّي ذهنك، وعيش حياة صحية متوازنة — ببرامج وتمارين ذكية داخل الموقع.</p>
+      <div class="hero-actions">
+        <a href="#exercise-system" class="btn primary">ابدأ التمرين الآن</a>
+        <a href="#contact" class="btn ghost">تواصل معنا</a>
+      </div>
 
-  <footer>
-    <p>© 2025 Gymaweya. كل الحقوق محفوظة.</p>
+      <!-- زر تثبيت التطبيق -->
+      <div class="install-wrap">
+        <button id="installBtn" style="display:none;">📲 تثبيت التطبيق</button>
+        <p id="installMsg" style="display:none; color:red;"></p>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- صورتك بتأثيرات الدخول + النبض + العوم + دوران -->
+      <img src="./assets/yasser.jpg" alt="صورتي الشخصية" class="my-photo" />
+    </div>
+  </section>
+
+  <!-- روابط خارجية -->
+  <section id="external-links" class="section alt">
+    <h2>🌐 روابط خارجية مفيدة</h2>
+    <p>مواقع أدوات ومراجع لياقة وصحة:</p>
+    <div class="links-grid">
+      <a href="https://examine.com" target="_blank" class="btn pill">Examine</a>
+      <a href="https://www.bodybuilding.com" target="_blank" class="btn pill">Bodybuilding</a>
+      <a href="https://www.stronglifts.com" target="_blank" class="btn pill">StrongLifts</a>
+      <a href="https://www.acefitness.org" target="_blank" class="btn pill">ACE Fitness</a>
+      <a href="https://www.nsca.com" target="_blank" class="btn pill">NSCA</a>
+    </div>
+  </section>
+
+  <!-- نظام تمرين عملاق -->
+  <section id="exercise-system" class="section">
+    <h2>🏋️‍♂️ نظام التمارين الذكي</h2>
+    <p>اختَر المجموعة العضلية والمستوى وشغّل التمرين فورًا — كل تمرين له زر خاص.</p>
+
+    <!-- أدوات التحكم -->
+    <div class="filters">
+      <div class="field">
+        <label>المجموعة العضلية</label>
+        <select id="groupSelect">
+          <option value="all">الكل</option>
+          <option value="chest">صدر</option>
+          <option value="back">ظهر</option>
+          <option value="legs">أرجل</option>
+          <option value="shoulders">كتف</option>
+          <option value="arms">ذراع</option>
+          <option value="core">كور</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>المستوى</label>
+        <select id="levelSelect">
+          <option value="all">الكل</option>
+          <option value="beginner">مبتدئ</option>
+          <option value="intermediate">متوسط</option>
+          <option value="advanced">متقدم</option>
+        </select>
+      </div>
+      <div class="field grow">
+        <label>بحث</label>
+        <input id="searchInput" type="text" placeholder="اكتب اسم تمرين أو أداة..." />
+      </div>
+      <button id="resetFilters" class="btn ghost">إعادة التعيين</button>
+    </div>
+
+    <!-- شبكة التمارين: تُولّد ديناميكيًا -->
+    <div id="exerciseGrid" class="exercise-grid"></div>
+
+    <!-- مودال تفاصيل التمرين -->
+    <div id="exerciseModal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" id="closeModal">×</button>
+        <div class="modal-body">
+          <h3 id="modalTitle"></h3>
+          <p class="meta" id="modalMeta"></p>
+
+          <div class="video-wrap">
+            <video id="modalVideo" controls poster="./assets/exercise-poster.jpg">
+              <source id="modalVideoSrc" src="" type="video/mp4"/>
+              متصفحك لا يدعم تشغيل الفيديو.
+            </video>
+          </div>
+
+          <div class="steps">
+            <h4>الخطوات:</h4>
+            <ol id="stepsList"></ol>
+          </div>
+
+          <div class="session-quick">
+            <h4>جلسة سريعة:</h4>
+            <div class="session-controls">
+              <div class="field">
+                <label>الجولات</label>
+                <input id="setsInput" type="number" min="1" max="10" value="3"/>
+              </div>
+              <div class="field">
+                <label>التكرارات</label>
+                <input id="repsInput" type="number" min="1" max="50" value="12"/>
+              </div>
+              <button id="startSession" class="btn primary">بدء المتابعة</button>
+            </div>
+            <p id="sessionMsg" class="session-msg"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- البرامج -->
+  <section id="programs" class="section alt">
+    <h2>📆 برامج التدريب</h2>
+    <div class="grid">
+      <div class="card">تنشيف وحرق دهون</div>
+      <div class="card">زيادة كتلة عضلية</div>
+      <div class="card">كارديو ولياقة</div>
+      <div class="card">استشفاء وحركة</div>
+    </div>
+  </section>
+
+  <!-- معرض الصور -->
+  <section id="gallery" class="section">
+    <h2>📸 معرض الصور</h2>
+    <div class="grid">
+      <img src="./assets/gallery1.jpg" class="gallery-photo" alt="جيم 1" />
+      <img src="./assets/gallery2.jpg" class="gallery-photo" alt="جيم 2" />
+      <img src="./assets/gallery3.jpg" class="gallery-photo" alt="جيم 3" />
+    </div>
+  </section>
+
+  <!-- المدربون -->
+  <section id="trainers" class="section alt">
+    <h2>👨‍🏫 المدربون</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="./assets/yasser.jpg" class="team-photo" alt="ياسر" />
+        <h3>ياسر أحمد حمدي</h3>
+        <p>مدرب شخصي وخبير تجربة مستخدم</p>
+      </div>
+      <div class="card">
+        <img src="./assets/trainer2.jpg" class="team-photo" alt="مدرب" />
+        <h3>مدرب آخر</h3>
+        <p>متخصص في القوة والكارديو</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- الأسعار -->
+  <section id="pricing" class="section">
+    <h2>💰 الاشتراكات</h2>
+    <div class="grid">
+      <div class="card">شهر — 300 جنيه</div>
+      <div class="card">3 شهور — 800 جنيه</div>
+      <div class="card">6 شهور — 1500 جنيه</div>
+      <div class="card">سنة — 2800 جنيه</div>
+    </div>
+  </section>
+
+  <!-- تواصل -->
+  <section id="contact" class="section alt">
+    <h2>📩 تواصل معنا</h2>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('تم إرسال رسالتك بنجاح!');">
+      <input type="text" placeholder="الاسم" required />
+      <input type="email" placeholder="البريد الإلكتروني" required />
+      <textarea placeholder="رسالتك" required></textarea>
+      <button type="submit" class="btn primary">إرسال</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 GYMAWEYA | جميع الحقوق محفوظة</p>
   </footer>
+
 </body>
 </html>
