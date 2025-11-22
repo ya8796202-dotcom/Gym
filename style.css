@@ -1,292 +1,121 @@
-/* ===========================
-   GYMAWEYA - Clean style.css
-   Minimal animations, optimized for performance
-   Color scheme: light green primary, orange buttons
-   =========================== */
-
-/* Variables */
+/* ألوان عامة */
 :root{
-  --bg: #0c2216;
-  --bg-alt: #113220;
-  --card: #133a25;
-  --primary: #7dd3b0;      /* أخضر فاتح */
-  --primary-2: #42c69a;
-  --text: #effff7;
-  --muted: #c7f2e0;
-  --shadow: rgba(0,0,0,0.16);
-
-  --btn: #ff8a3d;          /* أزرار برتقالي */
-  --btn-2: #ff6f00;
-  --btn-text: #1a0f00;
+  --bg:#f9fff9;          /* خلفية فاتحة */
+  --bg-alt:#eefaf2;
+  --card:#d6ecff;        /* لبني للكروت */
+  --primary:#ffd60a;     /* أصفر للأزرار */
+  --primary-dark:#ffb703;
+  --text:#222;
+  --muted:#555;
+  --shadow:rgba(0,0,0,0.15);
 }
 
-/* Respect user motion preference */
-@media (prefers-reduced-motion: reduce) {
-  * { animation: none !important; transition: none !important; }
+/* Reset */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Cairo",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
 }
 
-/* Reset & base */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body {
-  margin: 0;
-  font-family: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Decorative static background (no animation) */
-  background-image:
-    radial-gradient(1200px 600px at 10% 5%, rgba(125,211,176,0.06), transparent 60%),
-    radial-gradient(900px 500px at 90% 100%, rgba(66,198,154,0.06), transparent 60%);
+/* عناوين */
+.gradient-text{
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-/* Headings */
-h1, h2, h3 { margin: 0 0 12px; line-height: 1.15; }
-p { margin: 0 0 12px; color: var(--muted); }
+/* أقسام مع دخول ناعم */
+.section{
+  padding:60px 20px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.section.alt{background:var(--bg-alt)}
 
-/* Gradient title */
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary), #d6faea);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 8px rgba(125,211,176,0.08);
+/* كروت */
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 6px 14px var(--shadow);
+  transition:transform .3s ease;
 }
+.card:hover{transform:translateY(-4px)}
 
-/* Sections */
-.section {
-  padding: 56px 20px;
-  text-align: center;
-  opacity: 1;
+/* أزرار */
+.btn{
+  padding:12px 20px;
+  border-radius:24px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-block;
+  background:var(--primary);
+  color:#000;
+  box-shadow:0 6px 14px rgba(255,214,10,.3);
+  animation:pulseBtn 2s infinite;
 }
-.section.alt { background: var(--bg-alt); }
-
-/* Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-
-/* Card */
-.card {
-  background: var(--card);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 6px 14px var(--shadow);
-  border: 1px solid rgba(255,255,255,0.04);
-  transition: box-shadow .18s ease, transform .12s ease;
-}
-.card:hover { box-shadow: 0 10px 22px rgba(0,0,0,0.18); transform: translateY(-4px); }
-
-/* Buttons */
-.btn {
-  padding: 10px 16px;
-  border-radius: 22px;
-  text-decoration: none;
-  font-weight: 800;
-  display: inline-block;
-  transition: transform .16s ease, box-shadow .16s ease;
-  cursor: pointer;
-}
-.btn.primary {
-  background: linear-gradient(135deg, var(--btn), var(--btn-2));
-  color: var(--btn-text);
-  box-shadow: 0 6px 18px rgba(255,111,0,0.18);
-}
-.btn.primary:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(255,111,0,0.26); }
-.btn.ghost {
-  border: 2px solid var(--primary);
-  color: var(--text);
-  background: transparent;
-}
-.btn.pill {
-  background: rgba(125,211,176,0.14);
-  color: var(--text);
-  border: 1px solid rgba(125,211,176,0.28);
+.btn:hover{transform:translateY(-2px)}
+@keyframes pulseBtn{
+  0%{box-shadow:0 0 0 0 rgba(255,214,10,.6)}
+  70%{box-shadow:0 0 0 20px rgba(255,214,10,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,214,10,0)}
 }
 
-/* Hero */
-.hero {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 56px 20px;
+/* صورة البروفايل */
+.my-photo{
+  width:240px;
+  height:240px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid var(--primary);
+  opacity:0;
+  animation: fadeInUp 1.2s ease forwards,
+             pulsePhoto 2.5s infinite,
+             floatAnim 6s ease-in-out infinite,
+             slowRotate 20s linear infinite;
 }
-.hero-content { max-width: 520px; }
-.hero-actions { margin-top: 14px; }
-.hero-visual { text-align: center; }
-
-/* Install button (styled but no animation heavy) */
-.install-wrap { margin-top: 12px; }
-#installBtn {
-  background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  color: #04140d;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-  font-weight: 800;
-  box-shadow: 0 8px 20px rgba(66,198,154,0.12);
-  cursor: pointer;
+@keyframes fadeInUp{
+  0%{opacity:0;transform:translateY(40px)}
+  100%{opacity:1;transform:translateY(0)}
 }
-#installBtn:hover { transform: translateY(-2px); }
-
-/* Profile photo (no continuous rotation) */
-.my-photo {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
-  margin-top: 12px;
-  opacity: 1;
-  transition: transform .18s ease, box-shadow .18s ease;
-  /* subtle float on hover only */
+@keyframes pulsePhoto{
+  0%{box-shadow:0 0 0 0 rgba(255,214,10,.7)}
+  70%{box-shadow:0 0 0 25px rgba(255,214,10,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,214,10,0)}
 }
-.my-photo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 26px rgba(125,211,176,0.14);
+@keyframes floatAnim{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
+}
+@keyframes slowRotate{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
 }
 
-/* Links grid */
-.links-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 12px;
+/* زرار التثبيت */
+#installBtn{
+  background:var(--primary);
+  color:#000;
+  border:none;
+  border-radius:16px;
+  padding:14px 18px;
+  font-weight:900;
+  box-shadow:0 8px 20px rgba(255,214,10,.4);
+  cursor:pointer;
+  animation:pulseInstall 2.5s infinite;
 }
-
-/* Filters */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin: 14px auto 20px;
-  max-width: 900px;
-}
-.field { display: flex; flex-direction: column; gap: 6px; min-width: 160px; }
-.field.grow { flex: 1; min-width: 220px; }
-.field label { color: var(--muted); font-weight: 700; font-size: 0.95rem; }
-.field select, .field input {
-  background: rgba(255,255,255,0.04);
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 8px 10px;
-  outline: none;
-  transition: box-shadow .14s ease;
-}
-.field select:focus, .field input:focus { box-shadow: 0 6px 18px rgba(66,198,154,0.08); }
-
-/* Exercise cards */
-.exercise-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin-top: 10px;
-}
-.exercise-card {
-  background: var(--card);
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 6px 14px var(--shadow);
-  border: 1px solid rgba(255,255,255,0.04);
-}
-.exercise-card h3 { margin: 0 0 6px; color: #f1fff9; font-size: 1.05rem; }
-.exercise-card .meta { color: var(--muted); font-size: 0.92rem; margin-bottom: 8px; }
-.exercise-card .chip {
-  display: inline-block;
-  padding: 6px 10px;
-  border-radius: 18px;
-  margin: 0 6px 6px 0;
-  background: rgba(125,211,176,0.12);
-  color: #eafff7;
-  font-weight: 700;
-}
-
-/* Modal */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  z-index: 999;
-}
-.modal[aria-hidden="false"] { display: flex; }
-.modal-content {
-  width: min(920px, 95vw);
-  border-radius: 12px;
-  background: var(--bg-alt);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-  border: 1px solid rgba(255,255,255,0.04);
-}
-.modal-body { padding: 16px; position: relative; }
-.modal-close {
-  position: absolute;
-  right: 18px;
-  top: 12px;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* Video */
-.video-wrap video {
-  width: 100%;
-  border-radius: 10px;
-  display: block;
-}
-
-/* Gallery & team */
-.gallery-photo { width: 100%; border-radius: 10px; display: block; }
-.team-photo {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  border: 3px solid var(--primary);
-  display: block;
-  margin-bottom: 8px;
-}
-
-/* Contact form */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 420px;
-  margin: 0 auto;
-}
-.contact-form input, .contact-form textarea {
-  background: rgba(255,255,255,0.04);
-  color: var(--text);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 10px;
-  outline: none;
-}
-
-/* Footer */
-.footer {
-  padding: 18px;
-  text-align: center;
-  color: var(--muted);
-  border-top: 1px solid rgba(255,255,255,0.04);
-}
-
-/* Responsive tweaks */
-@media (max-width: 880px) {
-  .hero { padding: 36px 16px; }
-  .my-photo { width: 180px; height: 180px; }
-  .hero-content { text-align: center; }
+@keyframes pulseInstall{
+  0%{box-shadow:0 0 0 0 rgba(255,214,10,.6)}
+  70%{box-shadow:0 0 0 20px rgba(255,214,10,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,214,10,0)}
 }
