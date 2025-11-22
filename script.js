@@ -203,3 +203,20 @@ startSessionBtn.addEventListener('click', () => {
 
 // ====== Init ======
 renderExercises(exercises);
+
+
+
+
+// Scroll reveal: إضافة كلاس visible عند دخول العناصر للشاشة
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target); // يضاف مرة واحدة فقط
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(sec => observer.observe(sec));
