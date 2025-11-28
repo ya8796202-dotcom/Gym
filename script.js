@@ -220,3 +220,38 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 sections.forEach(sec => observer.observe(sec));
+
+
+// اطلب إذن الإشعارات من المستخدم
+Notification.requestPermission().then(permission => {
+  if (permission === "granted") {
+    // مثال: إشعار يومي الساعة 8 صباحًا
+    scheduleDaily("وقت الفطار! لا تنسى وجبتك.", 8, 0);
+
+    // مثال: إشعار يومي الساعة 6 مساءً
+    scheduleDaily("وقت التمرين! شد حيلك.", 18, 0);
+
+    // مثال: إشعار يومي الساعة 8 مساءً
+    scheduleDaily("وجبة بعد التمرين مهمة لجسمك.", 20, 0);
+  }
+});
+
+// دالة لجدولة إشعار يومي
+function scheduleDaily(message, hour, minute) {
+  const now = new Date();
+  const target = new Date();
+  target.setHours(hour, minute, 0, 0);
+
+  // لو الوقت فات، نزود يوم
+  if (target <= now) {
+    target.setDate(target.getDate() + 1);
+  }
+
+  const delay = target.getTime() - now.getTime();
+
+  setTimeout(() => {
+    new Notification("تذكير الجيم", { body: message });
+    // إعادة الجدولة لليوم التالي
+    scheduleDaily(message, hour, minute);
+  }, delay);
+}
